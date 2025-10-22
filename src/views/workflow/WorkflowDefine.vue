@@ -4,7 +4,7 @@ import { NButton, NLayout, NLayoutContent, NLayoutSider, NModal, useMessage } fr
 import type { Edge, Node, NodeChange } from '@vue-flow/core'
 import { VueFlow, useVueFlow } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
-import { AnswerNode, ClassifierNode, Dalle3Node, DocumentExtractorNode, EndNode, FaqExtractorNode, GoogleNode, HttpRequestNode, HumanFeedbackNode, KeywordExtractorNode, KnowledgeRetrievalNode, MailSendNode, SpecialNode, StartNode, SwitcherNode, TemplateNode, TongyiwanxNode } from './components/nodes'
+import { AnswerNode, ClassifierNode, Dalle3Node, DocumentExtractorNode, EndNode, FaqExtractorNode, GoogleNode, HttpRequestNode, MyRequestNode, HumanFeedbackNode, KeywordExtractorNode, KnowledgeRetrievalNode, MailSendNode, SpecialNode, StartNode, SwitcherNode, TemplateNode, TongyiwanxNode } from './components/nodes'
 import SpecialEdge from './components/edges/SpecialEdge.vue'
 import CustomEdge from './components/edges/CustomEdge.vue'
 import CustomEdge2 from './components/edges/CustomEdge2.vue'
@@ -309,6 +309,9 @@ onUnmounted(() => {
                   <template #node-httprequest="nodeProps">
                     <HttpRequestNode v-bind="nodeProps" :workflow="workflow" />
                   </template>
+									<template #node-myrequest="nodeProps">
+										<MyRequestNode v-bind="nodeProps" :workflow="workflow" />
+									</template>
                   <template #node-special="nodeProps">
                     <SpecialNode v-bind="nodeProps" :workflow="workflow" />
                   </template>

@@ -15,7 +15,7 @@ import TemplateNode from './TemplateNode.vue'
 import HumanFeedbackNode from './HumanFeedbackNode.vue'
 import MailSendNode from './MailSendNode.vue'
 import HttpRequestNode from './HttpRequestNode.vue'
-
+import MyRequestNode from './MyRequestNode.vue'
 import StartNodeProperty from './StartNodeProperty.vue'
 import AnswerNodeProperty from './AnswerNodeProperty.vue'
 import ClassifierNodeProperty from './ClassifierNodeProperty.vue'
@@ -33,4 +33,4 @@ import HumanFeedbackNodeProperty from './HumanFeedbackNodeProperty.vue'
 import MailSendNodeProperty from './MailSendNodeProperty.vue'
 import HttpRequestNodeProperty from './HttpRequestNodeProperty.vue'
 
-export { SpecialNode, StartNode, EndNode, AnswerNode, ClassifierNode, DocumentExtractorNode, KeywordExtractorNode, FaqExtractorNode, Dalle3Node, TongyiwanxNode, KnowledgeRetrievalNode, GoogleNode, SwitcherNode, TemplateNode, StartNodeProperty, AnswerNodeProperty, ClassifierNodeProperty, SwticherNodeProperty, TemplateNodeProperty, KeywordExtractorNodeProperty, FaqExtractorNodeProperty, DocumentExtractorNodeProperty, KnowledgeRetrievalNodeProperty, Dalle3NodeProperty, TongyiwanxNodeProperty, GoogleNodeProperty, EndNodeProperty, HumanFeedbackNode, HumanFeedbackNodeProperty, MailSendNode, MailSendNodeProperty, HttpRequestNode, HttpRequestNodeProperty }
+export { SpecialNode, StartNode, EndNode, AnswerNode, ClassifierNode, DocumentExtractorNode, KeywordExtractorNode, FaqExtractorNode, Dalle3Node, TongyiwanxNode, KnowledgeRetrievalNode, GoogleNode, SwitcherNode, TemplateNode, StartNodeProperty, AnswerNodeProperty, ClassifierNodeProperty, SwticherNodeProperty, TemplateNodeProperty, KeywordExtractorNodeProperty, FaqExtractorNodeProperty, DocumentExtractorNodeProperty, KnowledgeRetrievalNodeProperty, Dalle3NodeProperty, TongyiwanxNodeProperty, GoogleNodeProperty, EndNodeProperty, HumanFeedbackNode, HumanFeedbackNodeProperty, MailSendNode, MailSendNodeProperty, HttpRequestNode, HttpRequestNodeProperty,MyRequestNode }
