@@ -34,8 +34,12 @@ import HumanFeedbackNodeProperty from './HumanFeedbackNodeProperty.vue'
 import MailSendNodeProperty from './MailSendNodeProperty.vue'
 import HttpRequestNodeProperty from './HttpRequestNodeProperty.vue'
 import SqlExecutorNodeProperty from './SqlExecutorNodeProperty.vue'
+import DbTableInfoNode from './DbTableInfoNode.vue'
+import DbTableInfoNodeProperty from './DbTableInfoNodeProperty.vue'
 
 export {
+	DbTableInfoNodeProperty,
+	DbTableInfoNode,
 	SqlExecutorNodeProperty,
 	SqlExecutorNode,
 	SpecialNode,

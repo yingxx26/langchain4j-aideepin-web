@@ -313,6 +313,13 @@ declare namespace Workflow {
 		sqlListStr: string
 	}
 
+	interface NodeConfigDbTable implements NodeConfig {
+		dburl: string
+		dbuser: string
+		dbpassword: string
+		dbtable: string
+	}
+
 	interface MyRequest implements NodeConfig {
 		method: string
 		url: string

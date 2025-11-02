@@ -23,7 +23,8 @@ import {
 	StartNode,
 	SwitcherNode,
 	TemplateNode,
-	TongyiwanxNode
+	TongyiwanxNode,
+	DbTableInfoNode
 } from './components/nodes'
 import SpecialEdge from './components/edges/SpecialEdge.vue'
 import CustomEdge from './components/edges/CustomEdge.vue'
@@ -362,6 +363,9 @@ onUnmounted(() => {
 									</template>
 									<template #node-sqlexecutor="nodeProps">
 										<SqlExecutorNode v-bind="nodeProps" :workflow="workflow"/>
+									</template>
+									<template #node-dbtableinfo="nodeProps">
+										<DbTableInfoNode v-bind="nodeProps" :workflow="workflow"/>
 									</template>
 									<template #node-special="nodeProps">
 										<SpecialNode v-bind="nodeProps" :workflow="workflow"/>

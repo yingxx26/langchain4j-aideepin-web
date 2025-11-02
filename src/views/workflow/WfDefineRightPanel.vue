@@ -18,7 +18,8 @@ import {
 	SwticherNodeProperty,
 	TemplateNodeProperty,
 	TongyiwanxNodeProperty,
-	SqlExecutorNodeProperty
+	SqlExecutorNodeProperty,
+	DbTableInfoNodeProperty
 } from './components/nodes'
 import {useWfStore} from '@/store'
 import {SvgIcon} from '@/components/common'
@@ -153,6 +154,10 @@ onMounted(() => {
 				/>
 				<SqlExecutorNodeProperty
 					v-else-if="wfNode.wfComponent.name === 'SqlExecutor'" :key="`sql_${wfNode.uuid}`" :workflow="workflow"
+					:ui-workflow="uiWorkflow" :wf-node="wfNode"
+				/>
+				<DbTableInfoNodeProperty
+					v-else-if="wfNode.wfComponent.name === 'DbTableInfo'" :key="`dbtable_${wfNode.uuid}`" :workflow="workflow"
 					:ui-workflow="uiWorkflow" :wf-node="wfNode"
 				/>
 			</div>
