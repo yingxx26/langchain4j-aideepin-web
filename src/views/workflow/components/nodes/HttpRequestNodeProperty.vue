@@ -3,6 +3,7 @@ import { NButton, NCollapse, NCollapseItem, NInput, NInputNumber, NSelect, NSwit
 import JsonEditorVue from 'json-editor-vue'
 import NodePropertyInput from '../NodePropertyInput.vue'
 import { SvgIcon } from '@/components/common'
+import {onMounted} from "vue";
 
 const props = defineProps<Props>()
 enum Mode {
@@ -79,6 +80,10 @@ function onAddFormUrlEncodedBody() {
     value: '',
   })
 }
+onMounted(() => {
+	console.log('nodeConfig', nodeConfig.url)
+
+})
 </script>
 
 <template>

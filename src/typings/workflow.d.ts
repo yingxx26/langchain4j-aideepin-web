@@ -309,6 +309,10 @@ declare namespace Workflow {
 		clear_html: boolean
 	}
 
+	interface NodeConfigSql implements NodeConfig {
+		sqlListStr: string
+	}
+
 	interface MyRequest implements NodeConfig {
 		method: string
 		url: string

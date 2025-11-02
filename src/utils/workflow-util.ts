@@ -46,6 +46,8 @@ export function createNewNode(
     createHttpRequest(newWfNode)
 	else if (component.name === 'MyRequest')
 		createMyRequest(newWfNode)
+	else if (component.name === 'SqlExecutor')
+		createSqlExecutor(newWfNode)
   workflow.nodes.push(newWfNode)
   uiWorkflow.nodes.push(wfNodeToUiNode(newWfNode))
 }
@@ -366,8 +368,13 @@ function createMyRequest(node: Workflow.WorkflowNode) {
 		retry_times: 0,
 		clear_html: false,
 	}
-	alert(node.nodeConfig.timeout )
+}
 
+
+function createSqlExecutor(node: Workflow.WorkflowNode) {
+	node.nodeConfig = {
+		sqlListStr: 'x',
+	}
 }
 
 export function getInputLabelFromParamName(workflow: Workflow.WorkflowInfo, nodeUuid: string, nodeParamName: string) {
