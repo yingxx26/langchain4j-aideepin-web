@@ -148,6 +148,7 @@ async function run() {
       messageReceived: (chunk, event) => {
         const eventName = event || ''
         try {
+					console.log('==========messageReceived:'+eventName)
           if (eventName.includes('[NODE_RUN_')) {
             const nodeUuid = eventName.replace('[NODE_RUN_', '').replace(']', '')
             console.log(`${nodeUuid}开始运行`)

@@ -50,7 +50,7 @@ async function loadMoreMessage(callback?: Function) {
     wfStore.setLoadingRuntimes(currWfUuid, true)
 
     const { data } = await api.workflowRuntimes<Workflow.WfRuntimesResp>(currWfUuid, currentPage, pageSize)
-    console.log('kb record response:', data)
+    console.log('=========loadMoreMessage response:', data)
     if (data.records)
       wfStore.unshiftWfRuntimes(currWfUuid, data.records)
 
@@ -144,6 +144,7 @@ function runDone() {
 }
 
 async function onShowRuntimeDetail(instUuid: string) {
+	console.log("====================onShowRuntimeDetail:"+instUuid)
   showDetailModal.value = true
   detailNodes.value = []
   detailErrorMsg.value = ''
