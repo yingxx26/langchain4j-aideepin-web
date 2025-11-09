@@ -1,4 +1,5 @@
 # AIDeepIn Web
+https://registry.npmmirror.com/
 
 ## 介绍
 
