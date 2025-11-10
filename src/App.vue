@@ -154,7 +154,20 @@ const menuOptions: MenuOption[] = [
         },
         { default: () => '搜索' },
       ),
-  },
+  },{
+		key: 'menu-aisearch',
+		icon: renderIcon(SearchOutline),
+		label: () =>
+			h(
+				RouterLink,
+				{
+					to: {
+						name: 'Test',
+					},
+				},
+				{ default: () => '测试' },
+			),
+	},
 ]
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
