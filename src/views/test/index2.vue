@@ -11,7 +11,7 @@
 		</div>
 
 		<!-- 处理后的预览 -->
-		<div class="preview-area" v-if="processedHtml">
+		<div class="preview-area"  >
 			<h3>文档预览</h3>
 			<div v-html="processedHtml" class="content"></div>
 		</div>
@@ -27,7 +27,7 @@
 	</div>
 </template>
 <script setup>
-import {ref, nextTick } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import markdownIt from 'markdown-it';
 import mermaid from 'mermaid';
 import html2canvas from 'html2canvas';
@@ -57,9 +57,15 @@ pie
 
 // 处理后的HTML（含图片）
 const processedHtml = ref('');
-
+const outputContainer = ref(''); // 容器DOM引用
 // 初始化Markdown解析器
-const md = markdownIt({html: true, breaks: true});
+const md = markdownIt({
+	html: true,
+	breaks: true,
+	highlight: (str, lang) => lang === 'mermaid'
+		? `<pre class="mermaid"><code>${str}</code></pre>`  // 标记mermaid代码块
+		: `<pre><code>${str}</code></pre>`
+});
 
 // 初始化Mermaid
 mermaid.initialize({startOnLoad: false, securityLevel: 'loose'});
@@ -69,44 +75,40 @@ mermaid.initialize({startOnLoad: false, securityLevel: 'loose'});
  */
 const processContent = async () => {
 	if (!markdownContent.value) return;
-	debugger
-	await nextTick();
+
 	// 1. Markdown转原始HTML
 	const rawHtml = md.render(markdownContent.value);
-	let finalHtml = rawHtml;
-
-	// 2. 匹配Mermaid代码块并转换
-	const mermaidRegex = /```mermaid([\s\S]*?)```/g;
-	const blocks = markdownContent.value.match(mermaidRegex) || [];
-
-	for (const block of blocks) {
+// 1. 创建临时DOM元素（不添加到页面，仅用于解析）
+	const tempDivaaa = document.createElement('div');
+// 2. 将HTML字符串解析为DOM结构
+	tempDivaaa.innerHTML = rawHtml;
+	await nextTick();
+debugger
+	// 3. 提取并渲染所有mermaid代码块
+	tempDivaaa.querySelectorAll('pre.mermaid').forEach(async (pre, idx) => {
 		try {
-			// 提取Mermaid代码
-			const code = block.replace(/```mermaid|```/g, '').trim();
-			// 渲染为SVG
-			const {svg} = await mermaid.render(`mermaid-${Date.now()}`, code);
-
+			const code = pre.textContent.trim();
+			const { svg } = await mermaid.render(`m-${Date.now()}-${idx}`, code);
+			//pre.outerHTML = `<div class="mermaid-chart">${svg}</div>`;  // 替换为SVG
 			// SVG转PNG
+			debugger
 			const tempDiv = document.createElement('div');
 			tempDiv.innerHTML = svg;
 			tempDiv.style.position = 'absolute';
 			tempDiv.style.left = '-9999px';
 			document.body.appendChild(tempDiv);
-			debugger
+
 			const canvas = await html2canvas(tempDiv, {scale: 2});
 			const imgSrc = canvas.toDataURL('image/png');
-			const temphtml = md.render(block);
-			// 替换代码块为图片
-			finalHtml = finalHtml.replace(temphtml, `<div class="mermaid-img"><img src="${imgSrc}"></div>`);
-
-			document.body.removeChild(tempDiv);
+			pre.outerHTML = `<div class="mermaid-img"><img src="${imgSrc}"></div>`;
 		} catch (e) {
-			console.error('Mermaid转换失败:', e);
-			finalHtml = finalHtml.replace(temphtml, `<div class="error">⚠️ 图表转换失败</div>`);
-		}
-	}
+			pre.outerHTML = `<div class="mermaid-error">渲染失败: ${e.message}</div>`;
 
-	processedHtml.value = finalHtml;
+		}
+	});
+	debugger
+	processedHtml.value = tempDivaaa.innerHTML;
+console.log(processedHtml.value)
 };
 
 /**
